@@ -1,10 +1,10 @@
-import { GraphQLError } from 'graphql'
-import jwt from 'jsonwebtoken'
+const { GraphQLError } = require('graphql');
+const jwt = require('jsonwebtoken');
 
-const secret = process.env.SECRET
-const expiration = '2h'
+const secret = process.env.JWT_SECRET || 'fallbackSecret';
+const expiration = '2h';
 
-export const Auth = {
+module.exports = {
   AuthenticationError: new GraphQLError('Could not authenticate user.', {
     extensions: {
       code: 'UNAUTHENTICATED',

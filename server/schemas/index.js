@@ -1,4 +1,6 @@
-import { resolvers } from './resolvers.js'
-import { typeDefs } from './typeDefs.js'
+// Import typeDefs and resolvers
+const typeDefs = require('./typeDefs');
+const resolvers = require('./resolvers');
 
-export { resolvers, typeDefs }
+// Export them for use in your Apollo Server configuration
+module.exports = { typeDefs, resolvers };

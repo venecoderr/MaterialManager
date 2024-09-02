@@ -1,19 +1,10 @@
-import mongoose from 'mongoose'
-import bcrypt from 'bcrypt'
-
-const salt = 10
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const SALT_WORK_FACTOR = 10;
 
 const userSchema = new mongoose.Schema({
-  firstName: {
+  username: {
     type: String,
-    required: true,
-  },
-  lastName: {
-    type: String,
-    required: true,
-  },
-  employeeNumber: {
-    type: Number,
     required: true,
     unique: true
   },
@@ -27,7 +18,6 @@ const userSchema = new mongoose.Schema({
     required: true
   },
 });
-
 // Pre-save hook to hash the password
 userSchema.pre('save', function(next) {
   var user = this;
@@ -36,7 +26,7 @@ userSchema.pre('save', function(next) {
   if (!user.isModified('password')) return next();
 
   // Generate a salt
-  bcrypt.genSalt(salt, function(err, salt) {
+  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
     if (err) return next(err);
 
     // Hash the password using the generated salt
@@ -50,4 +40,4 @@ userSchema.pre('save', function(next) {
   });
 });
 
-export const User = mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);

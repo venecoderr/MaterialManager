@@ -42,7 +42,7 @@ class AuthService {
 
   login(idToken) {
     localStorage.setItem('token', idToken);
-    window.location.assign('/profile');
+    window.location.assign('/menu');
   }
 
   logout() {
