@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import RequiredField from "./requiredField.jsx";
 import { useQueriesContext } from "../../../utils/QueriesContext.jsx";
 import auth from "../../../utils/auth.js";
+import Profile from "../../../pages/Profile.jsx";
 
 export default function ProductForm({ product }) {
     const { mutations, classNames } = useQueriesContext();

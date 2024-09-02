@@ -3,15 +3,17 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import './styles/app.css';
+import './index.css';
 
 import App from './App.jsx';
 import Home from './pages/Home.jsx';
-import Menu from './pages/Menu.jsx'
-import MaterialList from './pages/MaterialList.jsx';
+import About from './pages/About.jsx';
+import Products from './pages/Products.jsx';
+import Profile from './pages/Profile.jsx';
+import SignUp from './pages/SignUp.jsx';
 import LogIn from './pages/LogIn.jsx';
-import Order from './pages/Order.jsx';
-import OrderHistory from './pages/History.jsx';
+import ProductPage from './pages/ProductPage.jsx';
+import PublicProfile from "./pages/PublicProile.jsx";
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
@@ -26,7 +28,7 @@ const authLink = setContext((_, { headers }) => {
 })
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphql'
+  uri: '/graphql'
 });
 
 const client = new ApolloClient({
@@ -45,24 +47,32 @@ const router = createBrowserRouter([
         element: <Home/>
       },
       {
-        path: '/menu',
-        element: <Menu/>
+        path: '/about',
+        element: <About/>
       },
       {
-        path: '/list',
-        element: <MaterialList/>
+        path: '/products',
+        element: <Products/>
       },
       {
-        path: '/order',
-        element: <Order/>
+        path: '/profile',
+        element: <Profile/>,
       },
       {
-        path: '/history/:id',
-        element: <OrderHistory/>,
+        path: '/profile/public/:id',
+        element: <PublicProfile/>
+      },
+      {
+        path: '/signup',
+        element: <SignUp/>
       },
       {
         path: '/login',
         element: <LogIn/>
+      },
+      {
+        path: '/product/:id',
+        element: <ProductPage/>
       }
     ]
   }

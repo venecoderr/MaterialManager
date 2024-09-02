@@ -1,9 +1,14 @@
-import mongoose from 'mongoose'
-import 'dotenv' // Load environment variables from .env file
+const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/materialManagerDB', {
+// Load environment variables from .env file
+require('dotenv').config();
+
+
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/artisanConnectDB', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
-export const db = mongoose.connection;
+
+
+module.exports = mongoose.connection;
