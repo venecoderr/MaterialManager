@@ -4,7 +4,7 @@ import { QueriesProvider } from './utils/QueriesContext.jsx';
 
 export default function App(){
   return(
-    <div className='h-full flex justify-center'>
+    <div className='flex flex-col h-full '>
       <QueriesProvider>
         <Outlet/>
       </QueriesProvider>

@@ -72,14 +72,14 @@ export default function LoginForm() {
 
     return (
         <>
-            <p className="username">Welcome!</p>
-            <form className="form" onSubmit={handleFormSubmit}>
-                <section className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-                    <section className="sm:col-span-2">
-                        <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">
+            <p className="text-center sub">MaterialManager</p>
+            <form className="" onSubmit={handleFormSubmit}>
+                <section className="">
+                    <section className="mx-auto my-3">
+                        <label htmlFor="email" className="">
                             Email
                         </label>
-                        <section className="mt-2.5">
+                        <section className="">
                             <input
                                 value={form.email.address}
                                 type="email"
@@ -93,11 +93,11 @@ export default function LoginForm() {
                             {showRequired.email && !form.email.address && <RequiredField />}
                         </section>
                     </section>
-                    <section className="sm:col-span-2">
-                        <label htmlFor="password" className="block text-sm font-semibold leading-6 text-gray-900">
+                    <section className="mx-auto my-3">
+                        <label htmlFor="password" className="">
                             Password
                         </label>
-                        <section className="mt-2.5">
+                        <section className="">
                             <input
                                 value={form.password}
                                 type="password"
@@ -110,22 +110,15 @@ export default function LoginForm() {
                             {showRequired.password && !form.password && <RequiredField />}
                         </section>
                     </section>
-                    <section className="mt-10 sm:col-span-2 submit p-2">
-                        <button
-                            type="submit"
-                            className="rounded block p-3.5 text-center text-sm text-grey-900 font-semibold shadow-sm"
-                        >Login</button>
-                                                <button
-                            type="submit"
-                            className="rounded block p-3.5 text-center text-sm text-grey-900 font-semibold shadow-sm"
-                        >
-                        </button>
+                    <button
+                        type="submit"
+                        className="rounded-lg bg-zinc-600 text-white w-1/3 flex justify-center hover-tce mx-auto my-3 p-1"
+                    >LogIn</button>
                         
-                    </section>
                 </section>
             </form>
             {errorMessage && (
-                <section className="m-3">
+                <section className="">
                     <p className="error-text">{errorMessage}</p>
                 </section>
             )}
