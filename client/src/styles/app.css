@@ -1,3 +1,51 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --yellow: #fcb839;
+}
+
+.text-tce {
+    color: var(--yellow);
+}
+
+.outline-tce {
+    outline-color: var(--yellow);
+}
+
+.bg-tce {
+    background-color: var(--yellow);
+}
+
+.border-tce {
+    border-color: var(--yellow);
+}
+
+.title {
+    font-size: 2.5em;
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.sub {
+    font-size: 1.5em;
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.sub-2 {
+    font-size: 1em;
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.hover-tce:hover {
+    color: var(--yellow);
+}
