@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Material = require('../models/Material'); // Ensure the correct model is imported
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -19,6 +20,22 @@ const resolvers = {
       if (!user) throw new Error('User not found');
       return user;
     },
+    // Fetches all materials
+    getMaterials: async () => {
+      try {
+        return await Material.find();
+      } catch (error) {
+        throw new Error('Error fetching materials');
+      }
+    },
+    // Fetches a single material by ID
+    getMaterialById: async (_, { id }) => {
+      try {
+        return await Material.findById(id);
+      } catch (error) {
+        throw new Error('Material not found');
+      }
+    }
   },
   Mutation: {
     // Handles user login
@@ -37,10 +54,11 @@ const resolvers = {
     addUser: async (_, { username, email, password }) => {
       const existingUser = await User.findOne({ email });
       if (existingUser) throw new Error('User already exists');
+      const hashedPassword = await bcrypt.hash(password, 12); // Hash the password
       const newUser = new User({
         username,
         email,
-        password
+        password: hashedPassword
       });
       const result = await newUser.save();
       return result;
@@ -60,19 +78,45 @@ const resolvers = {
       if (!deletedUser) throw new Error('User not found');
       return deletedUser;
     },
-  },
-  // User: {
-  //   // Resolves the products created by a user
-  //   products: async (user) => {
-  //     return await Product.find({ artisan: user.id });
-  //   },
-  // },
-  // Product: {
-  //   // Resolves the user who created a product
-  //   artisan: async (product) => {
-  //     return await User.findById(product.artisan);
-  //   },
-  // },
+    // Adds a new material
+    addMaterial: async (_, { partName, partNumber, description, quantInStock, unit }) => {
+      try {
+        const newMaterial = new Material({
+          partName,
+          partNumber,
+          description,
+          quantInStock,
+          unit
+        });
+        return await newMaterial.save();
+      } catch (error) {
+        console.error("Error adding material:", error);
+        throw new Error('Error adding material');
+      }
+    },
+    // Updates an existing material
+    updateMaterial: async (_, { id, partName, partNumber, description, quantInStock, unit }) => {
+      try {
+        const updatedMaterial = await Material.findByIdAndUpdate(
+          id,
+          { partName, partNumber, description, quantInStock, unit },
+          { new: true }
+        );
+        return updatedMaterial;
+      } catch (error) {
+        throw new Error('Error updating material');
+      }
+    },
+    // Removes a material
+    removeMaterial: async (_, { id }) => {
+      try {
+        const removedMaterial = await Material.findByIdAndRemove(id);
+        return removedMaterial;
+      } catch (error) {
+        throw new Error('Error removing material');
+      }
+    }
+  }
 };
 
 module.exports = resolvers;
