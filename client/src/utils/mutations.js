@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 
+// Existing mutations
 export const ADD_USER = gql`
   mutation AddUser($username: String!, $email: String!, $password: String!) {
     addUser(username: $username, email: $email, password: $password) {
@@ -81,3 +82,42 @@ export const LOGIN_USER = gql`
   }
 `;
 
+// New mutations
+export const ADD_MATERIAL = gql`
+  mutation AddMaterial($partName: String!, $partNumber: String!, $description: String!, $quantInStock: Int!, $unit: String!) {
+    addMaterial(partName: $partName, partNumber: $partNumber, description: $description, quantInStock: $quantInStock, unit: $unit) {
+      id
+      partName
+      partNumber
+      description
+      quantInStock
+      unit
+    }
+  }
+`;
+
+export const UPDATE_MATERIAL = gql`
+  mutation UpdateMaterial($id: ID!, $partName: String, $partNumber: String, $description: String, $quantInStock: Int, $unit: String) {
+    updateMaterial(id: $id, partName: $partName, partNumber: $partNumber, description: $description, quantInStock: $quantInStock, unit: $unit) {
+      id
+      partName
+      partNumber
+      description
+      quantInStock
+      unit
+    }
+  }
+`;
+
+export const REMOVE_MATERIAL = gql`
+  mutation RemoveMaterial($id: ID!) {
+    removeMaterial(id: $id) {
+      id
+      partName
+      partNumber
+      description
+      quantInStock
+      unit
+    }
+  }
+`;
