@@ -23,7 +23,7 @@
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
     "jquery": "^3.7.1",
-    "mysql2": "^2.2.5",
+    "mysql2": "^3.12.0",
     "node-cron": "^3.0.3",
     "sequelize": "^6.3.5",
     "ts-jest": "^29.1.2"
@@ -41,5 +41,5 @@
       "^.+\\.(js|jsx)$": "babel-jest"
     }
   },
-  "type" : "module"
+  "type": "module"
 }
